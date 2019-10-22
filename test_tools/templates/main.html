@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ locals.title }}</title>
+</head>
+<body>
+
+
+<div style="text-align: center">
+    <h1>这是一个测试页面</h1>
+    <form action="/test/" method="post">
+        <select name="test_select" >
+            <option value="POST">POST</option>
+            <option value="GET">GET</option>
+            <option value="PUT">PUT</option>
+            <option value="DELETE">DELETE</option>
+        </select>
+        <input type="text" placeholder="url" class="form-control" name="test_url">
+        <p>
+        {% for i in session.case_mulit %}
+        <input type="checkbox" name="{{ i.case_name }}">{{ i.case_name }}
+        {% endfor %}
+        </p>
+        <P><input type="checkbox" name="基础测试" checked="checked">基础测试</P>
+        <input type="submit" value="提交">
+        <!--        <button type="submit">提交</button>-->
+    </form>
+</div>
+<div style="text-align: center">
+    {{ locals.ls }}
+</div>
+<p>{{ locals.msg }}</p>
+</body>
+
+</html>
