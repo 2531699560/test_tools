@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="modal fade" id="edit-hostModal" tabindex="-1" role="dialog" aria-labelledby="hostModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="margin-top:100px;">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="edit-hostModalLabel">修改主机信息</h4>
+      </div>
+      <div class="modal-body">
+
+          <div class="row">
+              <div class="col-sm-6">
+                  <div class="form-group">
+                    <label >IP地址</label>
+                    <input  class="form-control"  placeholder="IP地址" id="edit-host-ip">
+                  </div>
+
+              </div>
+
+              <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>远程端口</label>
+                    <input  class="form-control"  placeholder="远程端口" id="edit-host-remove-port">
+                  </div>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>管理账号</label>
+                    <input  class="form-control"  placeholder="管理账号" id="edit-host-user">
+                  </div>
+              </div>
+
+              <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>账号密码</label>
+                    <input  class="form-control" type="password" placeholder="账号密码" id="edit-host-passwd">
+                  </div>
+
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>设备类型</label>
+                    <select  id="edit-host-type" class="form-control">
+                         <option value="物理机">物理机</option>
+                         <option value="虚拟机">虚拟机</option>
+                         <option value="云主机">云主机</option>
+                     </select>
+                  </div>
+
+              </div>
+
+              <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>分组</label>
+                    <select  id="edit-host-group" class="form-control">
+                         {% for info in group_obj %}
+                         <option value="{{ info.id }}">{{ info.host_group_name }}</option>
+                         {% endfor %}
+                        <option value="0">其他</option>
+                     </select>
+                  </div>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>IDC</label>
+                    <select  id="edit-host-idc" class="form-control">
+                         {% for info in idc_obj %}
+                         <option value="{{ info.id }}">{{ info.idc_name }}</option>
+                         {% endfor %}
+                        <option value="0">其他</option>
+                     </select>
+                  </div>
+
+              </div>
+
+              <div class="col-sm-6">
+                  <div class="form-group">
+                    <label >厂商</label>
+                         <select  id="edit-host-supplier" class="form-control">
+                             {% for info in supplier_obj %}
+                             <option value="{{ info.id }}">{{ info.supplier }}</option>
+                             {% endfor %}
+                             <option value="0">其他</option>
+                         </select>
+                  </div>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                    <label>描述</label>
+                    <input  class="form-control" placeholder="描述" id="edit-host-msg">
+                  </div>
+              </div>
+
+              <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>序列号</label>
+                    <input  class="form-control" placeholder="序列号" id="edit-host-serial-num">
+                  </div>
+
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                    <label>购买日期</label>
+                    <input  class="form-control" placeholder="购买日期" id="edit-host-purchase-date">
+                  </div>
+              </div>
+
+              <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>过保日期</label>
+                    <input  class="form-control" placeholder="过保日期" id="edit-host-overdue-date">
+                  </div>
+              </div>
+          </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary" id="sub-edit-host">提交</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

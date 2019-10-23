@@ -25,8 +25,12 @@ class case_list(db.Model):
     case_id = db.Column(db.String(64))
     default_result = db.Column(db.String(64),default=True)
     __tablename__ = 'case_list'
-    def __init__(self, case_type):
+    def __init__(self, case_type,case_steps,case_name,default_result,case_id):
         self.case_type = case_type
+        self.case_steps =case_steps
+        self.case_name = case_name
+        self.case_id = case_id
+        self.default_result = default_result
     def save(self):
         db.session.add(self)
         db.session.commit()

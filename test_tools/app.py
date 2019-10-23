@@ -9,7 +9,6 @@ from model import case_list,case
 from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
-
 # @main.before_request
 # def before_request():
 #     ip = request.remote_addr
@@ -22,7 +21,48 @@ db = SQLAlchemy()
 #     path = request.path
 #     base_url = request.base_url
 #     url_root = request.url_root
-    # print(ip)
+#     print(url)
+
+
+@main.route('/case/',methods=['GET','POST',"PUT"])
+def case_():
+    title = '测试用例'
+    if request.method=="GET":
+        case_list_ = case_list.query.all()
+        # session["case_list"]=case_list_
+        return render_template('case.html',locals=locals())
+    if request.method == 'PUT':
+        case_steps=request.form.get('case_steps',None)
+        case_type=request.form.get('case_type',None)
+        case_name= request.form.get('case_name',None)
+        case_id =request.form.get('case_id',None)
+        default_result=request.form.get('default_result',None)
+
+
+
+
+    if request.method=="POST":
+        case_steps=request.form.get('case_steps',None)
+        case_type=request.form.get('case_type',None)
+        case_name= request.form.get('case_name',None)
+        case_id =request.form.get('case_id',None)
+        default_result=request.form.get('default_result',None)
+        if not case_name or not case_steps:
+            msg = "必要参数不能为空:case_name or case_steps"
+            case_list_ = case_list.query.all()
+            return render_template('case.html', locals=locals())
+        else:
+            case_list_obj = case_list(case_id=case_id,
+                                      case_name=case_name,
+                                      case_steps=case_steps,
+                                      case_type=case_type,
+                                      default_result=default_result
+                                      )
+            case_list_obj.save()
+            case_list_ = case_list.query.all()
+            # session["case_list"] = case_list_
+            msg = "用例添加成功！"
+            return render_template('case.html',locals=locals())
 
 
 @main.route('/')
@@ -73,7 +113,7 @@ def test():
             print(e)
             msg = e
             return render_template('main.html',locals=locals())
-        return render_template('report.html',locals=locals())
+        return render_template('main.html',locals=locals())
 
     if request.method == "GET":
         return render_template('report.html',locals=locals())

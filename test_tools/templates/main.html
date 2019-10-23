@@ -6,11 +6,10 @@
 </head>
 <body>
 
-
 <div style="text-align: center">
     <h1>这是一个测试页面</h1>
     <form action="/test/" method="post">
-        <select name="test_select" >
+        <select name="test_select">
             <option value="POST">POST</option>
             <option value="GET">GET</option>
             <option value="PUT">PUT</option>
@@ -18,14 +17,18 @@
         </select>
         <input type="text" placeholder="url" class="form-control" name="test_url">
         <p>
-        {% for i in session.case_mulit %}
-        <input type="checkbox" name="{{ i.case_name }}">{{ i.case_name }}
-        {% endfor %}
+            {% for i in session.case_mulit %}
+            <input type="checkbox" name="{{ i.case_name }}">{{ i.case_name }}
+            {% endfor %}
         </p>
         <P><input type="checkbox" name="基础测试" checked="checked">基础测试</P>
         <input type="submit" value="提交">
         <!--        <button type="submit">提交</button>-->
     </form>
+</div>
+<div class="col-sm-12" id="phpmyadmin">
+    <iframe src="http://192.168.1.156:9000/test/" height="735px" width="100%" frameborder="0"
+            scrolling="0"></iframe>
 </div>
 <div style="text-align: center">
     {{ locals.ls }}
